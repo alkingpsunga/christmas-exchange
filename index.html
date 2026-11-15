@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#123b2b"><title>Christmas Exchange Gift</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="./"><span>🎄</span> Christmas <b>Exchange</b></a><nav><button class="nav-link active" data-view="join">Join event</button><button class="nav-link" data-view="admin">Organizer</button></nav></header>
+<main class="shell">
+  <section class="hero"><p class="eyebrow">A LITTLE MAGIC, A LOT OF SURPRISE</p><h1>Make this Christmas<br><em>extra memorable.</em></h1><p class="hero-copy">Join the gift exchange, share your wish list, and let the Secret Santa magic begin.</p><div class="hero-tags"><span>✦ Secret assignments</span><span>✦ Easy wish lists</span><span>✦ Christmas cheer</span></div></section>
+  <section id="joinView" class="panel view">
+    <div class="panel-heading"><div><p class="eyebrow">PARTICIPANT REGISTRATION</p><h2>Join the exchange</h2></div><span class="round-icon">🎁</span></div>
+    <div id="eventNotice" class="notice">Loading event details…</div>
+    <form id="joinForm" class="form-grid"><label class="full">Your codename<input id="codename" maxlength="32" required placeholder="e.g. Snowflake"></label><label class="full">Your wish list <span class="optional">(up to 5 ideas)</span><textarea id="wishlist" rows="4" maxlength="700" required placeholder="1. A cozy mug&#10;2. A book&#10;3. Chocolates"></textarea></label><p class="hint full">Save your private result link after registration. Do not share it with anyone.</p><button class="btn primary full" type="submit" id="joinButton">Join the gift exchange →</button></form>
+    <div id="joinResult" class="result hidden"></div>
+  </section>
+  <section id="assignmentView" class="panel view hidden"><div class="panel-heading"><div><p class="eyebrow">YOUR SECRET SANTA RESULT</p><h2>Your assignment</h2></div><span class="round-icon">🎅</span></div><p class="muted">Keep this page private. Your recipient is shown only to someone with your personal access link.</p><div id="assignmentResult"></div></section>
+  <section id="adminView" class="panel view hidden">
+    <div id="adminLogin"><div class="panel-heading"><div><p class="eyebrow">EVENT MANAGEMENT</p><h2>Organizer dashboard</h2></div><span class="round-icon">🔐</span></div><p class="muted">Sign in using the organizer account you created in Supabase Authentication and authorized in the admin table.</p><form id="loginForm" class="form-grid"><label class="full">Organizer email<input id="adminEmail" type="email" required autocomplete="username"></label><label class="full">Password<input id="adminPassword" type="password" required autocomplete="current-password"></label><button class="btn primary full" type="submit">Sign in</button></form><div id="loginError" class="error-text"></div></div>
+    <div id="adminDashboard" class="hidden"><div class="panel-heading"><div><p class="eyebrow">EVENT MANAGEMENT</p><h2>Organizer dashboard</h2></div><button id="logoutButton" class="btn subtle small">Sign out</button></div>
+      <div id="noEventBox" class="subpanel"><h3>Create your Christmas event</h3><form id="eventForm" class="form-grid"><label class="full">Event name<input id="eventName" required maxlength="80" value="Christmas Exchange Gift 2026"></label><label>Number of participants<input id="participantLimit" type="number" min="2" max="500" value="20" required></label><label>Gift budget (PHP)<input id="giftBudget" type="number" min="0" max="1000000" value="500" required></label><label class="full">Registration deadline<input id="deadline" type="datetime-local" required></label><button class="btn primary full" type="submit">Create event & generate invite link</button></form></div>
+      <div id="eventDashboard" class="hidden"><div class="stats"><div class="stat"><span>Registered</span><strong id="registeredCount">0</strong><small id="capacityLabel"></small></div><div class="stat"><span>Gift budget</span><strong id="budgetLabel">₱0</strong><small>Suggested spending limit</small></div><div class="stat"><span>Event status</span><strong id="statusLabel">Open</strong><small id="deadlineLabel"></small></div></div>
+        <div class="subpanel invite-box"><div><p class="eyebrow">SHARE THIS INVITATION</p><div id="inviteUrl" class="invite-url"></div></div><button id="copyInvite" class="btn secondary">Copy link</button></div>
+        <div class="action-row"><button id="refreshButton" class="btn subtle">↻ Refresh list</button><button id="shuffleButton" class="btn primary">🎲 Start secret shuffle</button></div><div id="adminMessage" class="notice"></div>
+        <div class="table-wrap"><table><thead><tr><th>Codename</th><th>Wish list</th><th>Registered</th></tr></thead><tbody id="participantRows"></tbody></table></div><p class="hint">The organizer can view registration details but cannot view participants' secret assignments in this dashboard.</p>
+      </div>
+    </div>
+  </section>
+  <footer>Made with <span>♥</span> for a more magical Christmas</footer>
+</main><div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script type="module" src="app.js"></script>
+</body></html>
